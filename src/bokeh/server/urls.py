@@ -59,6 +59,7 @@ from typing import Any, TypeAlias
 
 # External imports
 from tornado.web import RequestHandler
+from tornado.web import StaticFileHandler
 
 # Bokeh imports
 from ..embed.bundle import extension_dirs
@@ -98,6 +99,9 @@ toplevel_patterns: URLRoutes = [
     (r'/?', RootHandler),
     (r'/static/extensions/(.*)', MultiRootStaticHandler, dict(root=extension_dirs)),
     (r'/static/(.*)', StaticHandler),
+    (r'/images/(.*)', StaticFileHandler, {"path": "/images"}),
+    (r'/css/(.*)', StaticFileHandler, {"path": "/css"}),
+    (r'/fonts/(.*)', StaticFileHandler, {"path": "/fonts"}),
 ]
 
 per_app_patterns: URLRoutes = [
